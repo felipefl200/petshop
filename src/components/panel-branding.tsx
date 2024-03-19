@@ -1,4 +1,4 @@
-import PanelH1 from "./panel-h1";
+import PanelH1 from "@/components/panel-h1";
 
 export default function PanelBranding() {
     return (
