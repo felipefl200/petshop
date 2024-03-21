@@ -1,24 +1,14 @@
+'use client'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { CirclePlus } from 'lucide-react'
+import { usePetContext } from '@/hooks/hooks'
+import { cn } from '@/lib/utils'
 
-type PetProps = {
-    id: number
-    name: string
-    ownerName: string
-    imageUrl: string
-    age: number
-    notes: string
-}
-
-type PetListProps = {
-    pets: PetProps[]
-}
-
-export default function PetList({ pets }: PetListProps) {
-    console.log(pets)
+export default function PetList() {
+    const { pets, handleSetPet, selectedPetId } = usePetContext()
     return (
         <ScrollArea className="h-96 rounded-md">
             <div className="relative p-4">
@@ -26,10 +16,15 @@ export default function PetList({ pets }: PetListProps) {
                     Lista de Pets
                 </h4>
                 {pets.map((pet) => (
-                    <>
+                    <div key={pet.id}>
                         <div
-                            key={pet.id}
-                            className="w-full p-2 transition-colors hover:rounded-md hover:bg-popover hover:text-gray-600"
+                            onClick={() => handleSetPet(pet.id)}
+                            className={cn(
+                                'w-full p-2 transition-colors hover:rounded-md hover:bg-popover hover:text-gray-600',
+                                {
+                                    'bg-popover': selectedPetId === pet.id,
+                                }
+                            )}
                         >
                             <div className="flex items-center justify-center">
                                 <Avatar className="group h-10 w-10">
@@ -48,7 +43,7 @@ export default function PetList({ pets }: PetListProps) {
                             </div>
                         </div>
                         <Separator />
-                    </>
+                    </div>
                 ))}
             </div>
             <Button

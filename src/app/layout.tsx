@@ -26,7 +26,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                  <ThemeToggle className='absolute top-4 right-4' />
+                  <ThemeToggle className="absolute top-4 right-4" />
                     {children}
                 </ThemeProvider>
             </body>

@@ -36,9 +36,10 @@ export default function SearchForm() {
                                     type="search"
                                     placeholder="Procura..."
                                     {...field}
+                                    className='ring-1 ring-gray-200'
                                 />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className='relative bottom-2 text-xs italic left-1 text-red-900' />
                         </FormItem>
                     )}
                 />
